@@ -6,9 +6,15 @@
 #ifndef _MMAN_WIN32_H
 #define _MMAN_WIN32_H
 
-#ifndef _WIN32_WINNT		// Allow use of features specific to Windows XP or later.                   
-#define _WIN32_WINNT 0x0501	// Change this to the appropriate value to target other versions of Windows.
-#endif						
+
+//mkokot: I am commenting this out, not sure if this is good practice to have this defined
+//but I have an issue that in my small header file to detect some system specific details (like memory usage of a program)
+//I have beed using GetProcessMemoryInfo, and when I was first including this file (mman.h)
+//GetProcessMemoryInfo was unresolved (it gets resolved for >= 0x0601, some details regarding these values https://learn.microsoft.com/en-us/cpp/porting/modifying-winver-and-win32-winnt?view=msvc-170)
+//As I understand if this is commented out windows.h (and other windows headers) will define it for the current version, so I guess everythink should work just fine
+//#ifndef _WIN32_WINNT		// Allow use of features specific to Windows XP or later.
+//#define _WIN32_WINNT 0x0501	// Change this to the appropriate value to target other versions of Windows.
+//#endif
 
 #include <sys/types.h>
 #include <windows.h>
